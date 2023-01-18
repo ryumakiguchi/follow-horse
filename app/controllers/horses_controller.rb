@@ -1,20 +1,20 @@
 class HorsesController < ApplicationController
   before_action :set_horse, only: %i[show edit update delete destroy]
   def index
-    @horses = horse.where(user: current_user)
+    @horses = Horse.where(user: current_user)
   end
 
   def show
   end
 
   def new
-    @horse = horse.new
+    @horse = Horse.new
     @user = current_user
   end
 
   def create
     @user = current_user
-    @horse = horse.create(horse_params)
+    @horse = Horse.create(horse_params)
     @horse.user = @user
     if @horse.save
       redirect_to horses_path

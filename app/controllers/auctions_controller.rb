@@ -1,20 +1,20 @@
 class AuctionsController < ApplicationController
   before_action :set_auction, only: %i[show edit update delete destroy]
   def index
-    @auctions = auction.where(user: current_user)
+    @auctions = Auction.where(user: current_user)
   end
 
   def show
   end
 
   def new
-    @auction = auction.new
+    @auction = Auction.new
     @user = current_user
   end
 
   def create
     @user = current_user
-    @auction = auction.create(auction_params)
+    @auction = Auction.create(auction_params)
     @auction.user = @user
     if @auction.save
       redirect_to auctions_path
