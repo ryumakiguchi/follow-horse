@@ -4,9 +4,6 @@ class AuctionsController < ApplicationController
     @auctions = Auction.where(user: current_user)
   end
 
-  def show
-  end
-
   def new
     @auction = Auction.new
     @user = current_user
